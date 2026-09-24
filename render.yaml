@@ -1,0 +1,18 @@
+# Render Blueprint Infrastructure-as-Code Configuration
+# For deployment details, visit https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: cremen-mqtt
+    runtime: docker
+    plan: free # Can be changed to starter / standard / pro
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: "8080" # Render routes external HTTPS/WSS traffic to container WebSocket port
+      - key: MQTT_USERNAME
+        sync: false   # Value set securely in Render Dashboard UI
+      - key: MQTT_PASSWORD
+        sync: false   # Value set securely in Render Dashboard UI
