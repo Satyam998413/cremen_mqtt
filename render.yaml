@@ -8,7 +8,6 @@ services:
     plan: free # Can be changed to starter / standard / pro
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    healthCheckPath: /
     envVars:
       - key: PORT
         value: "8080" # Render routes external HTTPS/WSS traffic to container WebSocket port

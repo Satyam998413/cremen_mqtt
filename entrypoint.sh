@@ -21,9 +21,9 @@ else
     touch "$PWFILE"
 fi
 
-# Ensure user 'mosquitto' has read permissions to pwfile and access to data dirs
-chmod 0644 "$PWFILE"
+# Ensure user 'mosquitto' owns pwfile & data dirs, with secure 0700 permissions
 chown -R mosquitto:mosquitto /mosquitto/config /mosquitto/data /mosquitto/log 2>/dev/null || true
+chmod 0700 "$PWFILE"
 
 echo "[cremen_mqtt] Launching Mosquitto MQTT Broker..."
 exec mosquitto -c /mosquitto/config/mosquitto.conf
